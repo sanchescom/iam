@@ -12,7 +12,7 @@
             "email": "eu@thiagovictorino.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "thiagovictorino\\IAM\\": "src/"
