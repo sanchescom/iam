@@ -12,9 +12,9 @@ class IAMServiceProvider extends ServiceProvider  {
     public function boot() {
 
 
-        $this->publishes([__DIR__.'/../config/iam.php' => config_path('iam.php')], 'iam');
-
         $this->loadRoutesFrom(__DIR__ . '/../routes/iam.php');
+
+        $this->publishes([__DIR__.'/../config/iam.php' => config_path('iam.php')], 'thiagovictorino-iam');
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
