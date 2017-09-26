@@ -13,6 +13,7 @@ class IAMServiceProvider extends ServiceProvider {
         $this->publishes([__DIR__.'/../config/iam.php' => config_path('iam.php')], 'iam');
 
         $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
+
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
     }
