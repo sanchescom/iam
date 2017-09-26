@@ -12,7 +12,7 @@ class IAMServiceProvider extends ServiceProvider  {
     public function boot() {
 
 
-        $this->loadRoutesFrom(__DIR__ . '/../routes/iam.php');
+        //$this->loadRoutesFrom(__DIR__ . '/../routes/iam.php');
 
         $this->publishes([__DIR__.'/../config/iam.php' => config_path('iam.php')], 'thiagovictorino-iam');
 
@@ -21,14 +21,8 @@ class IAMServiceProvider extends ServiceProvider  {
     }
     public function register() {
 
-        $this->app->singleton(IAMService::class, function($app) {
-
-            //$config = $app->make('config');
-            //$uri = $config->get('mongo.uri');
-            //$uriOptions = $config->get('mongo.uriOptions');
-            //$driverOptions = $config->get('mongo.driverOptions');
-            return new IAMService();
-        });
+        include __DIR__ . '/../routes/iam.php';
+        $this->app->make(IAMService::class);
     }
     public function provides() {
         return ['thiagovictorino-iam'];
