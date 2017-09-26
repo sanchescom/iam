@@ -28,6 +28,6 @@ class IAMServiceProvider extends ServiceProvider {
         });
     }
     public function provides() {
-        return ['jwt'];
+        return ['iam'];
     }
 }
