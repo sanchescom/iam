@@ -7,8 +7,6 @@ use thiagovictorino\IAM\Services\IAMService;
 
 class IAMServiceProvider extends ServiceProvider  {
 
-    protected $defer = true;
-
     public function boot() {
 
 
