@@ -1,7 +1,8 @@
 <?php
 namespace thiagovictorino\IAM;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+
 use thiagovictorino\IAM\Services\IAMService;
 
 class IAMServiceProvider extends ServiceProvider {
