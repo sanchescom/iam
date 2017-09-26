@@ -1,5 +1,5 @@
 {
-    "name": "thiagovictorino/IAM",
+    "name": "thiagovictorino/iam",
     "description": "Identity and Access Management based on IAM AWS service concepts",
     "type": "library",
     "require": {
