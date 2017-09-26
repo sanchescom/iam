@@ -11,5 +11,8 @@ namespace thiagovictorino\IAM\Services;
 
 class IAMService
 {
+    public function hello(){
+        return 'I am live!';
+    }
 
 }
