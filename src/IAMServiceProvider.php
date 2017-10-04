@@ -19,12 +19,8 @@ class IAMServiceProvider extends ServiceProvider  {
     }
     public function register() {
 
-        $this->app->bind(IAMService::class, function($app) {
-            //$config = $app->make('config');
-            //$uri = $config->get('mongo.uri');
-            //$uriOptions = $config->get('mongo.uriOptions');
-            //$driverOptions = $config->get('mongo.driverOptions');
-            return new IAMService();
+        $this->app->bind(IAMService::class, function() {
+            return resolve(IAMService::class);
         });
     }
     public function provides() {
