@@ -1745,12 +1745,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thiagovictorino/my-arch.git",
-                "reference": "3fa3fe3e180c16eafb84ba597da7a525c1e3bea9"
+                "reference": "74711130ee51d69e2778d00011b6aa3da209083b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thiagovictorino/my-arch/zipball/3fa3fe3e180c16eafb84ba597da7a525c1e3bea9",
-                "reference": "3fa3fe3e180c16eafb84ba597da7a525c1e3bea9",
+                "url": "https://api.github.com/repos/thiagovictorino/my-arch/zipball/74711130ee51d69e2778d00011b6aa3da209083b",
+                "reference": "74711130ee51d69e2778d00011b6aa3da209083b",
                 "shasum": ""
             },
             "require": {
@@ -1787,7 +1787,7 @@
                 }
             ],
             "description": "My own architecture library",
-            "time": "2017-10-06 18:03:03"
+            "time": "2017-10-07 09:12:35"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

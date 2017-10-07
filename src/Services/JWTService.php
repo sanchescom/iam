@@ -14,8 +14,6 @@ use thiagovictorino\IAM\Exceptions\JWTAlgNotSupportedException;
  */
 class JWTService {
 
-
-
     /**
      * @var JWTSignService
      */

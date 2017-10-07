@@ -2,8 +2,9 @@
 
 
 use Illuminate\Support\Facades\Route;
+use thiagovictorino\IAM\Http\Controllers\IAMAuthController;
 
 
-Route::prefix('iam')->group(function () {
-    Route::get('auth', \thiagovictorino\IAM\Controllers\IAMController::class.'@auth');
+Route::prefix('iam/v1.0/')->group(function () {
+    Route::get('auth', IAMAuthController::class.'@auth');
 });

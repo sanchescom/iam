@@ -21,6 +21,7 @@ class CreateIamUsersTable extends Migration
             $table->string('email');
             $table->string('username')->unique();
             $table->string('password');
+            $table->dateTime('logged_at')->nullable();
             $table->boolean('active')->defeault(true);
             $table->timestamps();
         });

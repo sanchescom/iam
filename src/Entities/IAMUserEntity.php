@@ -1,7 +1,8 @@
 <?php
 
-namespace thiagovictorino\IAM\Models;
-use Illuminate\Database\Eloquent\Model;
+namespace thiagovictorino\IAM\Entities;
+
+use thiagovictorino\MyArch\Entities\Entity;
 
 /**
  * Created by PhpStorm.
@@ -9,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
  * Date: 10/5/17
  * Time: 14:58
  */
-class IAMUser extends Model {
-
+class IAMUserEntity extends Entity {
     protected $table = 'iam_users';
 }
