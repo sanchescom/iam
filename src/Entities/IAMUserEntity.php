@@ -12,4 +12,12 @@ use thiagovictorino\MyArch\Entities\Entity;
  */
 class IAMUserEntity extends Entity {
     protected $table = 'iam_users';
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'logged_at',
+
+    ];
 }

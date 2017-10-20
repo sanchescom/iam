@@ -28,9 +28,12 @@ class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase {
         parent::setUp();
 
         $this->app['config']->set('database.migrations','migrations');
-
         $this->app['config']->set('database.default','sqlite');
         $this->app['config']->set('database.connections.sqlite.database', ':memory:');
+
+        $this->app['config']->set('iam.jwt_alg', 'HS256');
+        $this->app['config']->set('iam.jwt_secret', 'hash');
+        $this->app['config']->set('iam.jwt_expiration_time', '5');
 
         $this->migrate();
     }

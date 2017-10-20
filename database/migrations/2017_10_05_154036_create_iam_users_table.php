@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -16,13 +18,12 @@ class CreateIamUsersTable extends Migration
 
         Schema::create('iam_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('uuid')->unique()->index();
             $table->string('name');
             $table->string('email');
             $table->string('username')->unique();
             $table->string('password');
             $table->dateTime('logged_at')->nullable();
-            $table->boolean('active')->defeault(true);
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
 
@@ -42,15 +43,16 @@ class CreateIamUsersTable extends Migration
             $table->increments('id');
             $table->string('uuid')->unique()->index();
             $table->string('name');
-            $table->boolean('active')->defeault(true);
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
 
         Schema::create('iam_services', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('uuid')->unique()->index();
             $table->string('name');
-            $table->boolean('active')->defeault(true);
+            $table->string('abbreviation')->unique();
+            $table->string('description')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
 
@@ -59,7 +61,7 @@ class CreateIamUsersTable extends Migration
             $table->string('uuid')->unique()->index();
             $table->integer('iam_service_id')->unsigned();
             $table->string('name');
-            $table->boolean('active')->defeault(true);
+            $table->boolean('active')->default(true);
             $table->timestamps();
 
             $table->foreign('iam_service_id')->references('id')->on('iam_services');
@@ -90,6 +92,66 @@ class CreateIamUsersTable extends Migration
             $table->foreign('iam_groups_id')->references('id')->on('iam_groups');
             $table->foreign('iam_users_id')->references('id')->on('iam_users');
         });
+
+        $this->seed();
+    }
+
+    private function seed(){
+        $user_id = DB::table('iam_users')->insertGetId(
+            [
+                'email' => 'admin@email.com',
+                'name' => 'Admin System',
+                'username' => 'admin',
+                'password' => password_hash('admin',PASSWORD_DEFAULT),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
+        );
+
+        $service_id = DB::table('iam_services')->insertGetId(
+            [
+                'name' => 'Identity and Access Management',
+                'abbreviation' => 'IAM',
+                'description' => 'Manage UserAccess and Encryption',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
+        );
+
+        $access_level_id_read = DB::table('iam_access_levels')->insertGetId(
+            [
+                'uuid' => 'KB6V2FUys1BkyJF1TC4Jafo68s_Niu',
+                'name' => 'read',
+                'iam_service_id' => $service_id,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
+        );
+
+        $access_level_id = DB::table('iam_access_levels')->insertGetId(
+            [
+                'uuid' => 'brtv94691FsZH1hWZqhRpf9zk7NsN8',
+                'name' => 'all',
+                'iam_service_id' => $service_id,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
+        );
+
+
+        DB::table('iam_users_has_access_levels')->insert(
+            [
+                'iam_users_id' => $user_id,
+                'iam_access_levels_id' => $access_level_id,
+            ]
+        );
+        DB::table('iam_users_has_access_levels')->insert(
+            [
+                'iam_users_id' => $user_id,
+                'iam_access_levels_id' => $access_level_id_read,
+            ]
+        );
+
     }
 
     /**

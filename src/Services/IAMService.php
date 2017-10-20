@@ -9,6 +9,8 @@
 namespace thiagovictorino\IAM\Services;
 
 
+use thiagovictorino\IAM\DTO\AuthDTORequest;
+
 class IAMService
 {
 
@@ -29,6 +31,10 @@ class IAMService
 
     public function hello(){
         return 'I am live!';
+    }
+
+    public function authenticate(AuthDTORequest $authDTORequest){
+
     }
 
 }

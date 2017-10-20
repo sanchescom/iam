@@ -13,10 +13,21 @@ use thiagovictorino\IAM\Test\AbstractTestCase;
 class IAMAuthControllerTest extends AbstractTestCase {
 
 
-    public function testBasicExample()
-    {
-        $response = $this->json('GET', '/iam/v1.0/auth/', ['name' => 'Sally']);
+    public function test_IAMAuthControllerTest_no_credentials(){
+        $response = $this->json('GET', '/iam/v1.0/auth/', []);
+        $this->assertEquals(400, $response->getStatusCode());
+    }
+
+    public function test_IAMAuthControllerTest_auth_fails(){
+        $response = $this->json('GET', '/iam/v1.0/auth/', ['username' => 'Sally', 'password' => 'Sally']);
+        $this->assertEquals(401, $response->getStatusCode());
+
+    }
+
+    public function test_IAMAuthControllerTest_auth_success(){
+        $response = $this->json('GET', '/iam/v1.0/auth/', ['username' => 'admin', 'password' => 'admin']);
         dd($response);
+        $this->assertEquals(200, $response->getStatusCode());
     }
 
 }
