@@ -1,5 +1,6 @@
 <?php namespace thiagovictorino\IAM\Repositories;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use thiagovictorino\IAM\Entities\IAMUserEntity;
 use thiagovictorino\IAM\Exceptions\AuthenticationFailException;
@@ -53,7 +54,11 @@ class IAMUserRepository extends RepositoryAbstract {
    }
 
    public function getAccess(IAMUserEntity $userEntity){
-       $result = $this->getUserAccess($userEntity->id);
+       $userAccess = $this->getUserAccess($userEntity->id);
+       $groupAccess = $this->getGroupAccess($userEntity->id);
+
+       $result = $this->mount($userAccess);
+       $result = $this->mount($groupAccess, $result);
 
        return $result;
    }
@@ -69,11 +74,11 @@ class IAMUserRepository extends RepositoryAbstract {
                 iam_services.active = 1
               ";
 
-       $results = DB::select(DB::raw($sql));
+       return DB::select(DB::raw($sql));
 
-      // dd($results);
+   }
 
-       $arr = [];
+   private function mount($results, $arr = []){
 
        foreach($results as $result){
 
@@ -89,9 +94,43 @@ class IAMUserRepository extends RepositoryAbstract {
        return $arr;
    }
 
-   private function getGroupAccess(array $groupIDs){
+    private function getGroupAccess(int $userId){
 
-   }
+        $sql = "SELECT iam_access_levels.name as access_name,iam_services.abbreviation, iam_services.name, iam_services.description 
+                FROM iam_groups_has_access_levels,iam_groups,iam_access_levels,iam_services  WHERE  
+                iam_groups.id = iam_groups_has_access_levels.iam_groups_id AND 
+                iam_access_levels.id = iam_groups_has_access_levels.iam_access_levels_id AND 
+                iam_services.id = iam_access_levels.iam_service_id AND 
+                iam_groups.id in (SELECT iam_groups.id FROM iam_users_has_groups WHERE iam_users_id = ".$userId.") AND 
+                iam_access_levels.active = 1 AND
+                iam_services.active = 1 AND
+                iam_groups.active = 1;
+              ";
+
+        return DB::select(DB::raw($sql));
+    }
+
+    public function saveToken(string $token, int $user_id){
+
+        try{
+
+            DB::table('iam_users_has_tokens')->insert([
+                'iam_users_id' => $user_id,
+                'token' => $token,
+                'logged_at' => Carbon::now(),
+            ]);
+
+        }catch (QueryException $queryException){
+
+            DB::table('iam_users_has_tokens')
+                ->where('iam_users_id',$user_id)
+                ->where('token',$token)
+                ->update(['logged_at'=>Carbon::now()]);
+        }
+
+
+
+    }
 }
 
 

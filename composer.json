@@ -2,6 +2,7 @@
     "name": "thiagovictorino/iam",
     "description": "Identity and Access Management based on IAM AWS service concepts",
     "type": "library",
+    "minimum-stability": "dev-master",
     "require": {
         "laravel/framework": "^5.5",
         "firebase/php-jwt": "^5.0",

@@ -35,7 +35,10 @@ class IAMAuthService
          */
         $jwtService = new JWTService(config('iam.jwt_alg'), config('iam.jwt_secret'));
 
-        $jwtService->setExp(Carbon::now()->addMinute(config('iam.jwt_expiration_time'))->getTimestamp());
+
+        if(config('iam.jwt_expires')){
+            $jwtService->setExp(Carbon::now()->addMinute(config('iam.jwt_expiration_minutes_time'))->getTimestamp());
+        }
 
         $claim = [
             'user' => [
@@ -48,7 +51,11 @@ class IAMAuthService
 
         $jwtService->addClaims($claim);
 
-        return $jwtService->getSignToken();
+        $token = $jwtService->getSignToken();
+
+        $userRepo->saveToken($token, $user->id);
+
+        return $token;
 
     }
 

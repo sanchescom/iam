@@ -120,6 +120,10 @@ class JwtDTO {
      */
     private $claims = [];
 
+    private $user;
+
+    private $services;
+
     /*
      *
      */
@@ -326,6 +330,40 @@ class JwtDTO {
     {
         $this->setOrRemoveClaim('data', $data);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
+
+    /**
+     * @param mixed $services
+     */
+    public function setServices($services)
+    {
+        $this->services = $services;
+    }
+
+
 
 
 

@@ -27,15 +27,13 @@ class CreateIamUsersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('iam_users_has_access_keys', function (Blueprint $table) {
+        Schema::create('iam_users_has_tokens', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('iam_users_id')->unsigned();
-            $table->string('uuid')->unique()->index();
-            $table->string('key');
+            $table->string('token')->unique();
             $table->json('hosts')->nullable();
-            $table->boolean('active')->default(true);
+            $table->timestamp('logged_at');
             $table->timestamps();
-
             $table->foreign('iam_users_id')->references('id')->on('iam_users');
         });
 
@@ -165,7 +163,7 @@ class CreateIamUsersTable extends Migration
         Schema::dropIfExists('iam_users_has_groups');
         Schema::dropIfExists('iam_groups_has_access_levels');
         Schema::dropIfExists('iam_users_has_access_levels');
-        Schema::dropIfExists('iam_users_has_access_keys');
+        Schema::dropIfExists('iam_users_has_tokens');
         Schema::dropIfExists('iam_users');
         Schema::dropIfExists('iam_groups');
         Schema::dropIfExists('iam_services');

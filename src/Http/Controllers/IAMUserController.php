@@ -11,4 +11,9 @@ namespace thiagovictorino\IAM\Http\Controllers;
 class IAMUserController extends IAMBaseController
 {
 
+
+    public function index(){
+        return 'ok';
+    }
+
 }

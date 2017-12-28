@@ -33,7 +33,8 @@ class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase {
 
         $this->app['config']->set('iam.jwt_alg', 'HS256');
         $this->app['config']->set('iam.jwt_secret', 'hash');
-        $this->app['config']->set('iam.jwt_expiration_time', '5');
+        $this->app['config']->set('iam.jwt_expiration_minutes_time', 5);
+        $this->app['config']->set('iam.jwt_expires', true);
 
         $this->migrate();
     }

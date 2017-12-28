@@ -5,8 +5,8 @@
  * Date: 10/4/17
  * Time: 15:39
  */
-
 namespace thiagovictorino\IAM\Test\Services;
+
 
 
 use thiagovictorino\IAM\Enums\JWTAlgTypes;
@@ -23,14 +23,8 @@ class IAMServiceTest extends AbstractTestCase {
 
         config(['iam.jwt_alg' => JWTAlgTypes::HS256]);
         config(['iam.jwt_secret' => 123]);
-        config(['iam.jwt_expiration_time' => 5]);
-    }
-
-    public function test_init(){
-
-
-        $a = new IAMUserRepository();
-
+        config(['iam.jwt_expiration_minutes_time' => 5]);
+        config(['iam.jwt_expires' => true]);
     }
 
 }
