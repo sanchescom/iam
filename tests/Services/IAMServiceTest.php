@@ -27,4 +27,11 @@ class IAMServiceTest extends AbstractTestCase {
         config(['iam.jwt_expires' => true]);
     }
 
+    public function test_init(){
+
+
+        $a = new IAMUserRepository();
+
+    }
+
 }

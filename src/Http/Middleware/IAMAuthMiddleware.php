@@ -26,7 +26,7 @@ class IAMAuthMiddleware
      * @param  string  $access_level
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $service)
+    public function handle(Request $request, Closure $next, $service = null)
     {
 
         $token = $request->bearerToken();
@@ -35,7 +35,7 @@ class IAMAuthMiddleware
         if(is_null($token)){
             $responseDTO->message = 'No token provided';
             $responseDTO->code = 422;
-            return response(json_encode($responseDTO),$responseDTO->code);
+            return response()->json($responseDTO,$responseDTO->code);
         }
 
         $tokenDecoded = $this->decodeToken($token);
@@ -43,7 +43,7 @@ class IAMAuthMiddleware
         if(is_null($tokenDecoded)){
             $responseDTO->message = 'Problem with token decodification';
             $responseDTO->code = 422;
-            return response(json_encode($responseDTO),$responseDTO->code);
+            return response()->json($responseDTO,$responseDTO->code);
 
         }
 
@@ -52,7 +52,7 @@ class IAMAuthMiddleware
         if(!$this->hasServiceAccess($service_arr,$tokenDecoded->getServices())){
             $responseDTO->message = 'Get away from here!';
             $responseDTO->code = 403;
-            return response(json_encode($responseDTO),$responseDTO->code);
+            return response()->json($responseDTO,$responseDTO->code);
         }
 
         return $next($request);
