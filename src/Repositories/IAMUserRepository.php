@@ -70,8 +70,8 @@ class IAMUserRepository extends RepositoryAbstract {
                 iam_access_levels.id = iam_users_has_access_levels.iam_access_levels_id AND 
                 iam_services.id = iam_access_levels.iam_service_id AND 
                 iam_users.id = ".$userId."  AND 
-                iam_access_levels.active = 1 AND
-                iam_services.active = 1
+                iam_access_levels.active = true AND
+                iam_services.active = true
               ";
 
        return DB::select(DB::raw($sql));
@@ -102,9 +102,9 @@ class IAMUserRepository extends RepositoryAbstract {
                 iam_access_levels.id = iam_groups_has_access_levels.iam_access_levels_id AND 
                 iam_services.id = iam_access_levels.iam_service_id AND 
                 iam_groups.id in (SELECT iam_groups.id FROM iam_users_has_groups WHERE iam_users_id = ".$userId.") AND 
-                iam_access_levels.active = 1 AND
-                iam_services.active = 1 AND
-                iam_groups.active = 1;
+                iam_access_levels.active = true AND
+                iam_services.active = true AND
+                iam_groups.active = true;
               ";
 
         return DB::select(DB::raw($sql));
