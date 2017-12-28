@@ -66,12 +66,12 @@ class IAMUserRepository extends RepositoryAbstract {
    private function getUserAccess(int $userId){
 
        $sql = "SELECT iam_access_levels.name as access_name,iam_services.abbreviation, iam_services.name, iam_services.description from iam_users_has_access_levels,iam_users,iam_access_levels,iam_services  WHERE  
-                iam_users.id = iam_users_has_access_levels.iam_users_id AND 
-                iam_access_levels.id = iam_users_has_access_levels.iam_access_levels_id AND 
+                iam_users.id = iam_users_has_access_levels.iam_user_id AND 
+                iam_access_levels.id = iam_users_has_access_levels.iam_access_level_id AND 
                 iam_services.id = iam_access_levels.iam_service_id AND 
                 iam_users.id = ".$userId."  AND 
-                iam_access_levels.active = true AND
-                iam_services.active = true
+                iam_access_levels.active AND
+                iam_services.active
               ";
 
        return DB::select(DB::raw($sql));
@@ -98,13 +98,13 @@ class IAMUserRepository extends RepositoryAbstract {
 
         $sql = "SELECT iam_access_levels.name as access_name,iam_services.abbreviation, iam_services.name, iam_services.description 
                 FROM iam_groups_has_access_levels,iam_groups,iam_access_levels,iam_services  WHERE  
-                iam_groups.id = iam_groups_has_access_levels.iam_groups_id AND 
-                iam_access_levels.id = iam_groups_has_access_levels.iam_access_levels_id AND 
+                iam_groups.id = iam_groups_has_access_levels.iam_group_id AND 
+                iam_access_levels.id = iam_groups_has_access_levels.iam_access_level_id AND 
                 iam_services.id = iam_access_levels.iam_service_id AND 
-                iam_groups.id in (SELECT iam_groups.id FROM iam_users_has_groups WHERE iam_users_id = ".$userId.") AND 
-                iam_access_levels.active = true AND
-                iam_services.active = true AND
-                iam_groups.active = true;
+                iam_groups.id in (SELECT iam_groups.id FROM iam_users_has_groups WHERE iam_user_id = ".$userId.") AND 
+                iam_access_levels.active AND
+                iam_services.active AND
+                iam_groups.active;
               ";
 
         return DB::select(DB::raw($sql));

@@ -63,22 +63,22 @@ class IAMUserRepositoryTest extends AbstractTestCase {
 
         DB::table('iam_groups_has_access_levels')->insert(
             [
-                'iam_groups_id' => $group_id,
-                'iam_access_levels_id' => $access_level_id,
+                'iam_group_id' => $group_id,
+                'iam_access_level_id' => $access_level_id,
             ]
         );
 
         DB::table('iam_groups_has_access_levels')->insert(
             [
-                'iam_groups_id' => $group_id,
-                'iam_access_levels_id' => $access_level_id2,
+                'iam_group_id' => $group_id,
+                'iam_access_level_id' => $access_level_id2,
             ]
         );
 
         DB::table('iam_users_has_groups')->insert(
             [
-                'iam_groups_id' => $group_id,
-                'iam_users_id' => 1,
+                'iam_group_id' => $group_id,
+                'iam_user_id' => 1,
             ]
         );
 

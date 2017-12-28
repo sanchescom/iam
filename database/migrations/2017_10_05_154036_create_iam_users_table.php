@@ -67,28 +67,31 @@ class CreateIamUsersTable extends Migration
 
         Schema::create('iam_users_has_access_levels', function (Blueprint $table) {
 
-            $table->integer('iam_users_id')->unsigned();
-            $table->integer('iam_access_levels_id')->unsigned();
+            $table->integer('iam_user_id')->unsigned();
+            $table->integer('iam_access_level_id')->unsigned();
+            $table->timestamps();
 
-            $table->foreign('iam_users_id')->references('id')->on('iam_users');
-            $table->foreign('iam_access_levels_id')->references('id')->on('iam_access_levels');
+            $table->foreign('iam_user_id')->references('id')->on('iam_users');
+            $table->foreign('iam_access_level_id')->references('id')->on('iam_access_levels');
         });
 
         Schema::create('iam_groups_has_access_levels', function (Blueprint $table) {
-            $table->integer('iam_groups_id')->unsigned();
-            $table->integer('iam_access_levels_id')->unsigned();
+            $table->integer('iam_group_id')->unsigned();
+            $table->integer('iam_access_level_id')->unsigned();
+            $table->timestamps();
 
-            $table->foreign('iam_groups_id')->references('id')->on('iam_groups');
-            $table->foreign('iam_access_levels_id')->references('id')->on('iam_access_levels');
+            $table->foreign('iam_group_id')->references('id')->on('iam_groups');
+            $table->foreign('iam_access_level_id')->references('id')->on('iam_access_levels');
         });
 
 
         Schema::create('iam_users_has_groups', function (Blueprint $table) {
-            $table->integer('iam_users_id')->unsigned();
-            $table->integer('iam_groups_id')->unsigned();
+            $table->integer('iam_user_id')->unsigned();
+            $table->integer('iam_group_id')->unsigned();
+            $table->timestamps();
 
-            $table->foreign('iam_groups_id')->references('id')->on('iam_groups');
-            $table->foreign('iam_users_id')->references('id')->on('iam_users');
+            $table->foreign('iam_group_id')->references('id')->on('iam_groups');
+            $table->foreign('iam_user_id')->references('id')->on('iam_users');
         });
 
         $this->seed();
@@ -139,14 +142,14 @@ class CreateIamUsersTable extends Migration
 
         DB::table('iam_users_has_access_levels')->insert(
             [
-                'iam_users_id' => $user_id,
-                'iam_access_levels_id' => $access_level_id,
+                'iam_user_id' => $user_id,
+                'iam_access_level_id' => $access_level_id,
             ]
         );
         DB::table('iam_users_has_access_levels')->insert(
             [
-                'iam_users_id' => $user_id,
-                'iam_access_levels_id' => $access_level_id_read,
+                'iam_user_id' => $user_id,
+                'iam_access_level_id' => $access_level_id_read,
             ]
         );
 

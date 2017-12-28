@@ -34,7 +34,7 @@ class IAMAuthMiddlewareTest extends AbstractTestCase {
     }
 
     public function test_IAMAuthMiddleware_handle_no_token(){
-        $response = $this->get('/iam/v1.0/user/');
+        $response = $this->get('/iam/v1/user/');
         $response->assertStatus(422);
         $content = json_decode($response->getContent());
         $this->assertEquals('No token provided',$content->message);
@@ -43,7 +43,7 @@ class IAMAuthMiddlewareTest extends AbstractTestCase {
     public function test_IAMAuthMiddleware_handle_wrong_decoded(){
         $response = $this->withHeaders([
             'Authorization' => 'Bearer 123',
-        ])->get('/iam/v1.0/user/');
+        ])->get('/iam/v1/user/');
 
         $response->assertStatus(422);
         $content = json_decode($response->getContent());
@@ -56,12 +56,12 @@ class IAMAuthMiddlewareTest extends AbstractTestCase {
          */
         $iamControllerTest = resolve(IAMAuthControllerTest::class);
 
-        $response = $this->json('GET', '/iam/v1.0/auth/', ['username' => 'admin', 'password' => 'admin']);
+        $response = $this->json('GET', '/iam/v1/auth/', ['username' => 'admin', 'password' => 'admin']);
         $content  = json_decode($response->getContent());
 
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$content->token,
-        ])->get('/iam/v1.0/user/');
+        ])->get('/iam/v1/user/');
 
         $response->assertStatus(200);
 

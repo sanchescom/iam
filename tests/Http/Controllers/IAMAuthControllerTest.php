@@ -14,16 +14,16 @@ class IAMAuthControllerTest extends AbstractTestCase {
 
 
     public function getToken(){
-        return $this->json('GET', '/iam/v1.0/auth/', ['username' => 'admin', 'password' => 'admin']);
+        return $this->json('GET', '/iam/v1/auth/', ['username' => 'admin', 'password' => 'admin']);
     }
 
     public function test_IAMAuthControllerTest_no_credentials(){
-        $response = $this->json('GET', '/iam/v1.0/auth/', []);
+        $response = $this->json('GET', '/iam/v1/auth/', []);
         $this->assertEquals(400, $response->getStatusCode());
     }
 
     public function test_IAMAuthControllerTest_auth_fails(){
-        $response = $this->json('GET', '/iam/v1.0/auth/', ['username' => 'Sally', 'password' => 'Sally']);
+        $response = $this->json('GET', '/iam/v1/auth/', ['username' => 'Sally', 'password' => 'Sally']);
         $this->assertEquals(401, $response->getStatusCode());
 
     }
