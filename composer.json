@@ -6,7 +6,8 @@
     "require": {
         "laravel/framework": "^5.5",
         "firebase/php-jwt": "^5.0",
-        "thiagovictorino/my-arch": "dev-master"
+        "thiagovictorino/my-arch": "dev-master",
+        "barryvdh/laravel-cors": "^0.11.0"
     },
     "license": "MIT",
     "authors": [
