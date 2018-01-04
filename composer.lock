@@ -4,122 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "edcdd35c9e2f073671844a531f439448",
-    "content-hash": "8a17e066c78f64f628cc2898904b6bdb",
+    "hash": "d60579666daf07ea37f41358bd7b9c3c",
+    "content-hash": "efbd5fa54b057c28fbec05e5209f7a36",
     "packages": [
-        {
-            "name": "asm89/stack-cors",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/asm89/stack-cors.git",
-                "reference": "c163e2b614550aedcf71165db2473d936abbced6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/asm89/stack-cors/zipball/c163e2b614550aedcf71165db2473d936abbced6",
-                "reference": "c163e2b614550aedcf71165db2473d936abbced6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9",
-                "symfony/http-foundation": "~2.7|~3.0|~4.0",
-                "symfony/http-kernel": "~2.7|~3.0|~4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.0 || ^4.8.10",
-                "squizlabs/php_codesniffer": "^2.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Asm89\\Stack\\": "src/Asm89/Stack/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexander",
-                    "email": "iam.asm89@gmail.com"
-                }
-            ],
-            "description": "Cross-origin resource sharing library and stack middleware",
-            "homepage": "https://github.com/asm89/stack-cors",
-            "keywords": [
-                "cors",
-                "stack"
-            ],
-            "time": "2017-12-20 14:37:45"
-        },
-        {
-            "name": "barryvdh/laravel-cors",
-            "version": "v0.11.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/barryvdh/laravel-cors.git",
-                "reference": "6ba64a654b4258a3ecc11aba6614c932b3442e30"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-cors/zipball/6ba64a654b4258a3ecc11aba6614c932b3442e30",
-                "reference": "6ba64a654b4258a3ecc11aba6614c932b3442e30",
-                "shasum": ""
-            },
-            "require": {
-                "asm89/stack-cors": "^1.2",
-                "illuminate/support": "5.3.x|5.4.x|5.5.x|5.6.x",
-                "php": ">=5.5.9",
-                "symfony/http-foundation": "^3.1|^4",
-                "symfony/http-kernel": "^3.1|^4"
-            },
-            "require-dev": {
-                "orchestra/testbench": "3.x",
-                "phpunit/phpunit": "^4.8|^5.2",
-                "squizlabs/php_codesniffer": "^2.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.11-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Barryvdh\\Cors\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Barryvdh\\Cors\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
-                }
-            ],
-            "description": "Adds CORS (Cross-Origin Resource Sharing) headers support in your Laravel application",
-            "keywords": [
-                "api",
-                "cors",
-                "crossdomain",
-                "laravel"
-            ],
-            "time": "2018-01-04 06:59:27"
-        },
         {
             "name": "doctrine/inflector",
             "version": "v1.2.0",
@@ -2408,16 +2295,16 @@
         },
         {
             "name": "laravel/laravel",
-            "version": "v5.5.22",
+            "version": "v5.5.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/laravel.git",
-                "reference": "593963979a6b6a27966aef9723b8ff08fb480b87"
+                "reference": "f4cba4f2b254456645036139129142df274a1ec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/laravel/zipball/593963979a6b6a27966aef9723b8ff08fb480b87",
-                "reference": "593963979a6b6a27966aef9723b8ff08fb480b87",
+                "url": "https://api.github.com/repos/laravel/laravel/zipball/f4cba4f2b254456645036139129142df274a1ec1",
+                "reference": "f4cba4f2b254456645036139129142df274a1ec1",
                 "shasum": ""
             },
             "require": {
@@ -2430,7 +2317,8 @@
                 "filp/whoops": "~2.0",
                 "fzaninotto/faker": "~1.4",
                 "mockery/mockery": "~1.0",
-                "phpunit/phpunit": "~6.0"
+                "phpunit/phpunit": "~6.0",
+                "symfony/thanks": "^1.0"
             },
             "type": "project",
             "extra": {
@@ -2456,7 +2344,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-11-21 13:37:48"
+            "time": "2018-01-03 16:52:15"
         },
         {
             "name": "laravel/tinker",
