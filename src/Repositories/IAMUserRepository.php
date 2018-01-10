@@ -30,7 +30,7 @@ class IAMUserRepository extends RepositoryAbstract {
    public function auth(string $username, string $password): IAMUserEntity{
 
 
-       $user = $this->entity->where('username',$username)->get();
+       $user = $this->getByUserName($username);
 
        if(count($user) == 0 ){
            throw new AuthenticationFailException('User not found');
@@ -130,6 +130,11 @@ class IAMUserRepository extends RepositoryAbstract {
 
 
 
+    }
+
+    public function getByUserName($username)
+    {
+        return $this->entity->where('username',$username)->take(1)->get();
     }
 }
 
