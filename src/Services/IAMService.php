@@ -10,6 +10,7 @@ namespace thiagovictorino\IAM\Services;
 
 
 use thiagovictorino\IAM\DTO\AuthDTORequest;
+use thiagovictorino\IAM\Repositories\IAMUserRepository;
 
 class IAMService
 {
@@ -31,6 +32,21 @@ class IAMService
 
     public function getObjectFromToken($token){
         return $this->jwtService->getTokenDecoded($token);
+    }
+
+    public function getIamUserEntityFromToken($token){
+        $jwtObject = $this->jwtService->getTokenDecoded($token);
+        /**
+         * @var $userRepository IAMUserRepository
+         */
+        $userRepository = resolve(IAMUserRepository::class);
+        $user =  $userRepository->getByUserName($jwtObject->getUser()->username);
+
+        if(count($user) == 0){
+            return null;
+        }
+
+        return $user->first();
     }
 
 }
