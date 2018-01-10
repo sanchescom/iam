@@ -29,4 +29,8 @@ class IAMService
         $this->jwtService->setExpirationDateInMinutes($expiration);
     }
 
+    public function getObjectFromToken($token){
+        return $this->jwtService->getTokenDecoded($token);
+    }
+
 }
