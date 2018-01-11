@@ -104,6 +104,7 @@ class CreateIamUsersTable extends Migration
                 'email' => 'admin@email.com',
                 'name' => 'Admin System',
                 'username' => 'admin',
+                'photo_url' => 'https://cdn2.iconfinder.com/data/icons/transparent-round-icons/512/user.png',
                 'password' => password_hash('admin',PASSWORD_DEFAULT),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
